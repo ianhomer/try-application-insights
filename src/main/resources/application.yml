@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: try-application-insights
+  profiles:
+    active:
+#
+# Enable "danger" profile by default
+#
+      - danger
+
+management:
+  endpoints:
+    web:
+      server:
+        auto-time-requests: true
+      exposure:
+#
+# See http://localhost:8080/actuator/ for all actuators
+#
+        include: "*"
+
+  metrics:
+    distribution:
+      percentiles-histogram.http.server.requests: true
+      sla.http.server.requests: 1ms,5ms,50ms,500ms,5s
